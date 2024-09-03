@@ -1,0 +1,52 @@
+<section>
+  <div class="container mx-auto">
+    <h1 class="text-xl font-semibold my-3">Shop Cart</h1>
+    <p class="text-main mb-3">Total Price : {{ data?.totalCartPrice }}</p>
+
+    @for ( p of data?.products; track $index) {
+    <div
+      class="flex flex-wrap items-center bg-main-light border-b border-white"
+    >
+      <div class="md:w-1/12 p-3">
+        <img
+          class="w-full"
+          [src]="p.product.imageCover"
+          [alt]="p.product.title"
+        />
+      </div>
+      <div class="md:w-10/12 p-3">
+        <h2 class="text-lg font-medium mt-2">{{ p.product.title }}</h2>
+        <p class="text-main my-3">Price :{{ p.price }}</p>
+        <span
+          (click)="deleteProductFromCart(p.product._id)"
+          class="cursor-pointer mb-2"
+        >
+          Remove <i class="fa fa-trash text-main"></i>
+        </span>
+      </div>
+      <div class="md:w-1/12 p-3">
+        <button
+          (click)="
+            updateProductCartCount(p.product._id, (p.count = p.count + 1))
+          "
+          class="text-white bg-green-500 rounded p-2"
+        >
+          +
+        </button>
+        <span> {{ p.count }} </span>
+        <button
+          (click)="
+            updateProductCartCount(p.product._id, (p.count = p.count - 1))
+          "
+          class="text-white bg-red-500 rounded p-2"
+        >
+          -
+        </button>
+      </div>
+    </div>
+    }
+    <button [routerLink]="['/orders', data._id]" class="btn-main my-2">
+      Orders
+    </button>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+<section class="my-3">
+  <h1 class="text-main text-2xl fw-bold">Specific Brand :</h1>
+  <div class="flex flex-wrap">
+ @if (brandsDetails) {
+  @for (b of brandsDetails; track $index) {
+    <div class="md:w-4/12 product">
+      <img class="w-full" [src]="b.image" [alt]="b.name" />
+      <h3 class="text-lg text-gray-500 text-center">{{ b.name }}</h3>
+      <p class="text-gray-500 text-center">{{ b.createdAt }}</p>
+    </div>
+    }
+ }
+  </div>
+</section>

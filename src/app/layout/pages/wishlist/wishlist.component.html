@@ -1,0 +1,41 @@
+<section>
+  <div class="flex flex-wrap">
+    @if (productList) { @for (p of productList ; track
+    $index) {
+    <div class="md:w-3/12 lg:w-2/12 p-3">
+      <div class="product p-2 cursor-pointer">
+      <span
+        ><i
+          (click)="removeFromWishList(p.id)"
+          class="fa fa-heart text-2xl text-red-600 text-xl"
+        ></i
+      ></span>
+
+        <div [routerLink]="['/productdetails', p._id]">
+          <img [src]="p.imageCover" class="w-full" alt="fashion" />
+          <span class="text-main font-sm">{{ p.category.name }}</span>
+          <h3 class="my-3 text-xl font-lg">
+            {{ p.title.split(" ").splice(0, 2).join(" ") }}
+          </h3>
+          <div class="flex flex-nowrap justify-between">
+            <span>{{ p.price }}EGP</span>
+            <span
+              ><i class="fa fa-star rating-color">{{
+                p.ratingsAverage
+              }}</i></span
+            >
+          </div>
+        </div>
+        <div class="flex flex-nowrap justify-around items-center">
+          <button
+            (click)="addProductToCart(p._id)"
+            class="btn-main w-full for-style py-1"
+          >
+            Add To Cart
+          </button>
+        </div>
+      </div>
+    </div>
+    } }
+  </div>
+</section>

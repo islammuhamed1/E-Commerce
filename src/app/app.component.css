@@ -1,0 +1,5 @@
+:host{
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 100vh;
+}

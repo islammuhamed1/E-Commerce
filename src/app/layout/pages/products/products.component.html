@@ -1,0 +1,78 @@
+<section>
+    <div class="max-w-md mx-auto my-3">
+      <div
+        class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden"
+      >
+        <div class="grid place-items-center h-full w-12 text-gray-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
+  
+        <input
+          class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+          type="text"
+          id="search"
+          placeholder="Search something.."
+          [(ngModel)]="searching"
+        />
+        <p class="text-transparent">{{ searching }}</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap">
+      @if (productList) { @for (p of productList | search : searching ; track
+      $index) {
+      <div class="md:w-3/12 lg:w-2/12 p-3">
+        <div class="product p-2 cursor-pointer">
+          @if (!wishList.includes(p.id)) {
+            <a (click)="addToWishList(p.id)" class="w[25%] py-1"
+            ><i
+              class="far fa-heart text-2xl for-style cursor-pointer"
+            ></i
+          ></a>
+          }
+          @if (wishList.includes(p.id)) {
+            <span><i (click)="removeFromWishList(p.id)" class="fa fa-heart text-2xl text-red-600 text-xl"></i></span>
+          }
+          <div [routerLink]="['/productdetails', p._id]">
+            <img [src]="p.imageCover" class="w-full" alt="fashion" />
+            <span class="text-main font-sm">{{ p.category.name }}</span>
+            <h3 class="my-3 text-xl font-lg">
+              {{ p.title.split(" ").splice(0, 2).join(" ") }}
+            </h3>
+            <div class="flex flex-nowrap justify-between">
+              <span>{{ p.price }}EGP</span>
+              <span
+                ><i class="fa fa-star rating-color">{{
+                  p.ratingsAverage
+                }}</i></span
+              >
+            </div>
+          </div>
+          <div class="flex flex-nowrap justify-around items-center">
+            <button
+              (click)="addProductToCart(p._id)"
+              class="btn-main w-full for-style py-1"
+            >
+              Add To Cart
+            </button>
+          
+           
+          </div>
+        </div>
+      </div>
+      } }
+    </div>
+  </section>
+  

@@ -1,0 +1,25 @@
+<section>
+  @if (product) {
+  <div class="container mx-auto my-5 bg-main-light">
+    <div class="flex flex-nowrap items-center">
+      <div class="md:w-3/12 p-3">
+        <img class="w-full" [src]="product.imageCover" alt="" />
+      </div>
+      <div class="md:w-9/12 p-3">
+        <h1 class="text-lg font-medium">{{ product.title }}</h1>
+        <p class="text-sm text-gray-400 my-3">{{ product.description }}</p>
+        <span class="text-xs">{{ product.category.name }}</span>
+        <div class="flex flex-nowrap justify-between my-3">
+          <span class="text-lg">{{ product.price }}EGP</span>
+          <span
+            ><i class="fa fa-star rating-color">{{
+              product.ratingsAverage
+            }}</i></span
+          >
+        </div>
+        <button  class="btn-main w-full">Add To Cart</button>
+      </div>
+    </div>
+  </div>
+  }
+</section>
